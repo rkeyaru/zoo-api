@@ -1,6 +1,8 @@
 package com.zoosite.test;
 
-public class Animals {
+import java.io.Serializable;
+
+public class Animals implements Serializable{
 
 
     private int id;
@@ -8,7 +10,18 @@ public class Animals {
     private String gender;
     private int active;
     private String Sname;
-  
+    private Zoo zoo;
+ 
+    
+
+    public Zoo getZoo() {
+        
+        return zoo;
+    }
+
+    public void setZoo(Zoo zoo) {
+        this.zoo = zoo;
+    }
 
     public int getId() {
         return id;
@@ -51,5 +64,6 @@ public class Animals {
     public void setSname(String sname) {
         Sname = sname;
     }
+ 
     
 }

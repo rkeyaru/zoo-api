@@ -9,8 +9,11 @@
         <property name="gender" column="gender"></property>
         <property name="Sname" column="s_name"></property>
         <property name="active" column="active"></property>
-     
+        <many-to-one name="zoo" class="com.zoosite.test.Zoo" fetch="join" lazy="false">
+        <column name="zoo.id"></column>
+        </many-to-one>
     </class>
+
 
     <query name="findAnimals">  
 <![CDATA[from Animals]]>  

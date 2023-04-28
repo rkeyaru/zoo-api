@@ -1,6 +1,8 @@
 package com.zoosite.test;
 
-public class Zoo {
+import java.io.Serializable;
+
+public class Zoo implements Serializable{
 	private int id;
 	private String name;
 	private String state;

@@ -3,6 +3,11 @@ package com.zoosite.test;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 
 public class AnimalDao implements Dao<Animals> {
     Session session;
@@ -19,14 +24,19 @@ public class AnimalDao implements Dao<Animals> {
 
     @Override
     public List<Animals> getAll() {
-        List<Animals> animals =  session.createNamedQuery("findAnimals", Animals.class).list();
-        return animals;
+
+        List<Animals> animals =  session.createNamedQuery("findAnimals", Animals.class).getResultList();
         
+        return animals;
     }
 
     @Override
     public Boolean save(Animals t) {
-        return null;
+        Transaction tx = session.beginTransaction();
+        session.persist(t);
+        tx.commit();
+        return true;
+
     }
 
     @Override
