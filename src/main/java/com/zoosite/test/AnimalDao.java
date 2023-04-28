@@ -47,8 +47,13 @@ public class AnimalDao implements Dao<Animals> {
     }
 
     @Override
-    public Animals delete(int t) {
-        return null;
+    public Animals delete(int id) {
+        Transaction tx = session.beginTransaction();
+        Animals animal = session.get(Animals.class, id);
+        animal.setActive(0);
+        session.merge(animal);
+        tx.commit();
+        return animal;
     }
 
 }

@@ -173,4 +173,19 @@ public class MyResource extends ResourceConfig {
 
 	}
 
+	@POST
+	@Path("animal/delete")
+
+	@Produces(MediaType.APPLICATION_JSON)
+	public Boolean deleteAnimal(int id) {
+		try {
+			AnimalDao ob = new AnimalDao();
+			ob.delete(id);
+		} catch (HibernateException exc) {
+			throw new HibernateException("Can't be deleted	");
+		}
+		return true;
+
+	}
+
 }

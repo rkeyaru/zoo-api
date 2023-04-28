@@ -16,6 +16,6 @@
 
 
     <query name="findAnimals">  
-<![CDATA[from Animals]]>  
+<![CDATA[from Animals where active = 1]]>  
 </query>
 </hibernate-mapping>
