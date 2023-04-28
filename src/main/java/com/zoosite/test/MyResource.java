@@ -158,4 +158,19 @@ public class MyResource extends ResourceConfig {
 
 	}
 
+	@POST
+	@Path("animal/update")
+
+	@Produces(MediaType.APPLICATION_JSON)
+	public Boolean updateAnimal(Animals animal) {
+		try {
+			AnimalDao ob = new AnimalDao();
+			ob.update(animal);
+		} catch (HibernateException exc) {
+			throw new HibernateException("Can be updated");
+		}
+		return true;
+
+	}
+
 }

@@ -41,6 +41,9 @@ public class AnimalDao implements Dao<Animals> {
 
     @Override
     public void update(Animals t) {
+        Transaction tx = session.beginTransaction();
+      session.merge(t);
+        tx.commit();
     }
 
     @Override
