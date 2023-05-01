@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class UserDao implements Dao<Users> {
 
     Session session;
-
     public UserDao() {
         session = HibernateUtil.getInstance().openSession();
     }
@@ -28,7 +28,9 @@ public class UserDao implements Dao<Users> {
 
     @Override
     public Boolean save(Users t) {
-
+       
+       String hashedPassword = BCrypt.hashpw(t.getPassword(), BCrypt.gensalt(12));
+       t.setPassword(hashedPassword);
         Transaction tx = session.beginTransaction();
         List<Users> users = session.createNamedQuery("checkByEmail", Users.class).setParameter("email", t.getEmail()).list();
         if(users.size() > 0) { 
@@ -58,10 +60,14 @@ public class UserDao implements Dao<Users> {
     }
 
     public Users validateUser(Users user) { 
-
-        List<Users> u = session.createNamedQuery("validateUser", Users.class).setParameter("email", user.getEmail()).setParameter("password", user.getPassword()).list();
-        if(u.size() > 0) { 
-            return u.get(0);
+            
+        List<Users> u = session.createNamedQuery("validateUser", Users.class).setParameter("email", user.getEmail()).list();
+        
+        if(u.size() == 1) { 
+            if(BCrypt.checkpw(user.getPassword(), u.get(0).getPassword())) {
+                return u.get(0);
+            }
+            
         }
         return null;
     }

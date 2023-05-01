@@ -9,8 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 
-import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
+ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.glassfish.jersey.server.ResourceConfig;
