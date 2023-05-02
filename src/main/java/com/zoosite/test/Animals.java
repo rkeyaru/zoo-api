@@ -2,8 +2,7 @@ package com.zoosite.test;
 
 import java.io.Serializable;
 
-public class Animals implements Serializable{
-
+public class Animals implements Serializable {
 
     private int id;
     private String name;
@@ -11,11 +10,13 @@ public class Animals implements Serializable{
     private int active;
     private String Sname;
     private Zoo zoo;
- 
-    
+
+    public Animals() {
+        this.active = 1;
+    }
 
     public Zoo getZoo() {
-        
+
         return zoo;
     }
 
@@ -51,8 +52,6 @@ public class Animals implements Serializable{
         return active;
     }
 
-    
-
     public void setActive(int active) {
         this.active = active;
     }
@@ -64,6 +63,5 @@ public class Animals implements Serializable{
     public void setSname(String sname) {
         Sname = sname;
     }
- 
-    
+
 }
