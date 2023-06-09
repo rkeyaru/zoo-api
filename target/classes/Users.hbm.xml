@@ -2,17 +2,16 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.zoosite.test.Users" table="users">
-		<id name="userId" column="userId">
+		<id name="user_id" column="user_id">
 			<generator class="native" />
 		</id>
-		<property name="firstName" column="firstName"></property>
-		<property name="lastName" column="lastName"></property>
+		<property name="uname" column="uname"></property>
 		<property name="email" column="email"></property>
-		<property name="password" column="password"></property>
+		<property name="phn_no" column="phn_no"></property>
+		<property name="pass" column="pass"></property>
 		<property name="active" column="active"></property>
 		<property name="role" column="role"></property>
-		<property name="image" column="image"></property>
-	</class>
+  	</class>
 
 
 	<query name="findUser">  

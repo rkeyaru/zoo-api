@@ -29,8 +29,8 @@ public class UserDao implements Dao<Users> {
     @Override
     public Boolean save(Users t) {
        
-       String hashedPassword = BCrypt.hashpw(t.getPassword(), BCrypt.gensalt(12));
-       t.setPassword(hashedPassword);
+       String hashedPassword = BCrypt.hashpw(t.getPass(), BCrypt.gensalt(12));
+       t.setPass(hashedPassword);
         Transaction tx = session.beginTransaction();
         List<Users> users = session.createNamedQuery("checkByEmail", Users.class).setParameter("email", t.getEmail()).list();
         if(users.size() > 0) { 
@@ -64,7 +64,7 @@ public class UserDao implements Dao<Users> {
         List<Users> u = session.createNamedQuery("validateUser", Users.class).setParameter("email", user.getEmail()).list();
         
         if(u.size() == 1) { 
-            if(BCrypt.checkpw(user.getPassword(), u.get(0).getPassword())) {
+            if(BCrypt.checkpw(user.getPass(), u.get(0).getPass())) {
                 return u.get(0);
             }
             

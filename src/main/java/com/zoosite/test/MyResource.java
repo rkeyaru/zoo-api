@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
 
@@ -17,7 +18,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 /**
  * Root resource (exposed at path)
  */
-@Path("zoosite")
+@Path("myresource")
 public class MyResource extends ResourceConfig {
 
 	/**
@@ -26,6 +27,15 @@ public class MyResource extends ResourceConfig {
 	 *
 	 * @return String that will be returned as a text/plain response.
 	 */
+
+	 @GET
+	 @Path("test")
+	 @Produces(MediaType.TEXT_PLAIN)
+	 public String test() {
+ 
+		 return "It's working fine";
+		 
+	 }
 
 	@GET
 	@Path("zoos")
@@ -82,7 +92,7 @@ public class MyResource extends ResourceConfig {
 	}
 
 	@GET
-	@Path("users")
+	@Path("userdata")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Users> getUserData() {
 
@@ -103,10 +113,13 @@ public class MyResource extends ResourceConfig {
 	@POST
 	@Path("user/delete")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Users deleteUser(int id) {
+	public Users deleteUser(Users user) throws HibernateException {
+		
+			int id = user.getUser_id();
+			UserDao ob = new UserDao();
+			return ob.delete(id);
+		
 
-		UserDao ob = new UserDao();
-		return ob.delete(id);
 
 	}
 
@@ -186,5 +199,16 @@ public class MyResource extends ResourceConfig {
 		return true;
 
 	}
-
+	@GET 
+	@Path("videos")
+	@Produces(MediaType.APPLICATION_JSON) 
+	public List<Video> getVideos() {
+		try { 
+			VideoDao ob = new VideoDao();
+			return ob.getAll();
+		}
+		catch(HibernateException exc) { 
+			throw new HibernateException("Error in getting video data");
+		}
+	}
 }

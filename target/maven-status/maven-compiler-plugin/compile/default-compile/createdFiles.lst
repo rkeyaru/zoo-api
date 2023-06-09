@@ -3,6 +3,8 @@ com/zoosite/test/Users.class
 com/zoosite/test/MyResource.class
 com/zoosite/test/Animals.class
 com/zoosite/test/CorsFilter.class
+com/zoosite/test/Video.class
+com/zoosite/test/VideoDao.class
 com/zoosite/test/Zoo.class
 com/zoosite/test/HibernateUtil.class
 com/zoosite/test/ZooDao.class

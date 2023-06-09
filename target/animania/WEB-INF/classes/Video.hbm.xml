@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.zoosite.test.Video" table="video">
+        <id name="video_id" column="video_id">
+            <generator class="native" />
+        </id>
+
+        <property name="anime_name" column="anime_name"></property>
+        <property name="season" column="season"></property>
+        <property name="type" column="type"></property>
+        <property name="active" column="active"></property>
+        <property name="video_path" column="video_path"></property>
+
+    </class>
+
+
+    <query name="findVideo">  
+        <![CDATA[from Video u where u.active = 1]]>  
+</query>
+
+</hibernate-mapping>

@@ -9,9 +9,8 @@
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>test</name>
-
     <build>
-        <finalName>test</finalName>
+        <finalName>animania</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -107,6 +106,7 @@
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <javax.ws.rs-api.version>2.1</javax.ws.rs-api.version>
         <jersey.version>2.27</jersey.version>
+        <tomcat.webapps>/opt/tomcat9/webapps</tomcat.webapps>  
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>
